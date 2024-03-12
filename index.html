@@ -48,7 +48,7 @@
         selectElement.appendChild(option);
     });
 
-        selectElement.addEventListener('change', function(event) {
+        function changeFaction() {
             const selectedOption = event.target.value;
             console.log('Selected option:', selectedOption);
             if (selectedOption == "Scourge") {
@@ -102,6 +102,9 @@
     
 <body>
     <h1>Card Game</h1>
+    <select id="faction-select" onchange="changeFaction()">
+         <option value="Scourge">Scourge</option>
+        <option value="PHR">PHR</option>
     <button onclick="drawCard()">Draw Card</button>
     <div id="hand"></div>
 
