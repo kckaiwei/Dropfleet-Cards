@@ -41,7 +41,7 @@
         let hand = [];
         const selectElement = document.getElementById("faction-select");
 
-        select.addEventListener('change', function(event) {
+        selectElement.addEventListener('change', function(event) {
             const selectedOption = event.target.value;
             console.log('Selected option:', selectedOption);
             if (selectedOption == "scourge") {
