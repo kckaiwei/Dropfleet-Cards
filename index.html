@@ -87,7 +87,7 @@
                 alert("Hand is empty!");
                 return;
             }
-            hand.pop(cardName)
+            hand = hand.filter(item => item !== card);
             displayHand();
         }
 </script>
