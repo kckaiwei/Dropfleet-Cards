@@ -27,12 +27,12 @@
         // Define an array of cards
 
         let scourgeFilename = "/Dropfleet-Cards/Scourge_Command_Cards_Print_At_Home/Scourge_Command_Cards_Print_At_Home-";
-        let PHRFilename = "/Dropfleet-Cards/PHR_Command_Cards/PHR_Command_Cards-";
+        let phrFilename = "/Dropfleet-Cards/PHR_Command_Cards/PHR_Command_Cards-";
         let scourgeArray = [];
-        let PHRArray = [];
+        let phrArray = [];
         for (let i = 1; i <= 57; i++) {
             const sfilename = scourgeFilename + (i < 10 ? '0' + i : i) + ".jpg";
-            const pfilename = scourgeFilename + (i < 10 ? '0' + i : i) + ".jpg";
+            const pfilename = phrFilename + (i < 10 ? '0' + i : i) + ".jpg";
             scourgeArray.push(sfilename);
             PHRArray.push(pfilename);
         }
@@ -54,7 +54,7 @@
             if (selectedOption == "Scourge") {
                 cards = scourgeArray;
             } else if (selectedOption == "PHR") {
-                cards = PHRArray;
+                cards = phrArray;
             }
             console.log(cards)
         });
