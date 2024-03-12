@@ -61,7 +61,9 @@
                 let img = document.createElement("img");
                 let discardButton = document.createElement('button');
                 discardButton.textContent = "Discard";
-                discardButton.addEventListener('click', discardCard(card));
+                discardButton.addEventListener('click', function() {
+                    discardCard(card);
+                });
                 img.src = card
                 cardElement.appendChild(img)
                 cardElement.appendChild(discardButton);
