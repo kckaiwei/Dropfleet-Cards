@@ -22,12 +22,8 @@
     }
 </style>
 </head>
-<body>
-    <h1>Card Game</h1>
-    <button onclick="drawCard()">Draw Card</button>
-    <div id="hand"></div>
 
-    <script>
+<script>
         // Define an array of cards
 
         let scourgeFilename = "/Scourge_Command_Cards_Print_At_Home/Scourge_Command_Cards_Print_At_Home-";
@@ -75,6 +71,13 @@
             hand.pop(cardName)
             displayHand();
         }
-    </script>
+</script>
+    
+<body>
+    <h1>Card Game</h1>
+    <button onclick="drawCard()">Draw Card</button>
+    <div id="hand"></div>
+
+
 </body>
 </html>
