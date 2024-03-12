@@ -37,9 +37,19 @@
             PHRArray.push(pfilename);
         }
 
-        
         let cards = scourgeArray;
         let hand = [];
+        const selectElement = document.getElementById("faction-select");
+
+        select.addEventListener('change', function(event) {
+            const selectedOption = event.target.value;
+            console.log('Selected option:', selectedOption);
+            if (selectedOption == "scourge") {
+                cards = scourgeArray;
+            } else if (selectedOption == "phr") {
+                cards = PHRArray;
+            }
+        });
 
         // Function to draw a random card and add it to the hand
         function drawCard() {
@@ -84,6 +94,10 @@
     
 <body>
     <h1>Card Game</h1>
+    <select id="faction-select">Faction
+      <option value="scourge">Scourge</option>
+      <option value="phr">PHR</option>
+    </select>
     <button onclick="drawCard()">Draw Card</button>
     <div id="hand"></div>
 
