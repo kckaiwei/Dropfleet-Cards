@@ -39,14 +39,21 @@
 
         let cards = scourgeArray;
         let hand = [];
-        const selectElement = document.getElementById("faction-select");
+        const selectElement = document.createElement("faction-select");
+
+        const options = ['Scourge', 'PHR'];
+    options.forEach(optionText => {
+        const option = document.createElement('option');
+        option.textContent = optionText;
+        select.appendChild(option);
+    });
 
         selectElement.addEventListener('change', function(event) {
             const selectedOption = event.target.value;
             console.log('Selected option:', selectedOption);
-            if (selectedOption == "scourge") {
+            if (selectedOption == "Scourge") {
                 cards = scourgeArray;
-            } else if (selectedOption == "phr") {
+            } else if (selectedOption == "PHR") {
                 cards = PHRArray;
             }
         });
