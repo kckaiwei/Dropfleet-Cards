@@ -24,8 +24,8 @@
 </head>
 
 <script>
-        // Define an array of cards
 
+        // Initialize Cards
         let scourgeFilename = "/Dropfleet-Cards/Scourge_Command_Cards_Print_At_Home/Scourge_Command_Cards_Print_At_Home-";
         let phrFilename = "/Dropfleet-Cards/PHR_Command_Cards/PHR_Command_Cards-";
         let scourgeArray = [];
@@ -38,7 +38,42 @@
         }
 
         let cards = scourgeArray;
+        let selection = "Scourge";
         let hand = [];
+    
+        // Define an array of cards
+
+        function setCookie(selection, hand, deck) {
+            let cookie = "selection" + "=" + encodeURIComponent(selection);
+            cookie += "; deck=" + JSON.stringify(deck);
+            cookie += "; hand=" + JSON.stringify(hand);
+
+            let expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 30);
+            cookie += "; expires=" + expirateionDate.toUTCString();
+
+            document.cookie = cookie
+        }
+
+        // Read cookies
+        let cookiesDict = {};
+        document.cookie.split(";").forEach(cookie => {
+            let parts = cookies.split("=")
+            let key = parts[0].trim();
+            let value = decodeURIComponent(parts.slice(1).join('='));
+            cookiesDict[key] = value;
+        })
+
+        if (cookiesDict.hasOwnProperty("selection")) {
+            selection = cookiesDict["selection"]
+        }
+        if (cookiesDict.hasOwnProperty("hand")) {
+            hand = cookiesDict["hand"]
+        }
+        if (cookiesDict.hasOwnProperty("deck")) {
+            cards = cookiesDict["deck"]
+        }
+
         const selectElement = document.createElement("select");
 
         const options = ['Scourge', 'PHR'];
@@ -48,13 +83,17 @@
         selectElement.appendChild(option);
     });
 
+        selectElement.value = selection;
+
         function changeFaction() {
             const selectedOption = event.target.value;
             console.log('Selected option:', selectedOption);
             if (selectedOption == "Scourge") {
                 cards = scourgeArray;
+                selection = "Scourge";
             } else if (selectedOption == "PHR") {
                 cards = phrArray;
+                selection = "PHR";
             }
             console.log(cards)
         };
@@ -67,6 +106,7 @@
             cards.pop(card);
             console.log(hand)
             displayHand();
+            setCookie(selection, hand, cards);
         }
 
         // Function to display the hand
@@ -97,6 +137,7 @@
             }
             hand = hand.filter(item => item !== cardName);
             displayHand();
+            setCookie(selection, hand, cards);
         }
 </script>
     
