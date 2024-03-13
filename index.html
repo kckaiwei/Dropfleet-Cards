@@ -59,7 +59,7 @@
         // Read cookies
         let cookiesDict = {};
         document.cookie.split(";").forEach(cookie => {
-            let parts = cookies.split("=")
+            let parts = cookie.split("=")
             let key = parts[0].trim();
             let value = decodeURIComponent(parts.slice(1).join('='));
             cookiesDict[key] = value;
