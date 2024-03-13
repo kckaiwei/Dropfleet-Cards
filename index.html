@@ -51,7 +51,7 @@
 
             let expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate() + 30);
-            cookie += "; expires=" + expirateionDate.toUTCString();
+            cookie += "; expires=" + expirationDate.toUTCString();
 
             document.cookie = cookie
         }
@@ -86,11 +86,11 @@
         const selectElement = document.createElement("select");
 
         const options = ['Scourge', 'PHR'];
-    options.forEach(optionText => {
-        const option = document.createElement('option');
-        option.textContent = optionText;
-        selectElement.appendChild(option);
-    });
+        options.forEach(optionText => {
+            const option = document.createElement('option');
+            option.textContent = optionText;
+            selectElement.appendChild(option);
+        });
 
         selectElement.value = selection;
 
@@ -108,6 +108,7 @@
             }
             console.log(cards)
             setCookie(selection, hand, cards);
+            displayHand();
         };
 
         // Function to draw a random card and add it to the hand
