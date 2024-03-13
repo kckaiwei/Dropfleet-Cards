@@ -28,19 +28,60 @@
         // Initialize Cards
         let scourgeFilename = "/Dropfleet-Cards/Scourge_Command_Cards_Print_At_Home/Scourge_Command_Cards_Print_At_Home-";
         let phrFilename = "/Dropfleet-Cards/PHR_Command_Cards/PHR_Command_Cards-";
+        let ucmFilename = "/Dropfleet-Cards/UCM_Command_Cards_Print_At_Home/UCM_Command_Cards_Print_At_Home-";
         let scourgeArray = [];
         let phrArray = [];
+        let ucmArray = [];
         for (let i = 1; i <= 57; i++) {
             const sfilename = scourgeFilename + (i < 10 ? '0' + i : i) + ".jpg";
             const pfilename = phrFilename + (i < 10 ? '0' + i : i) + ".jpg";
+            const ufilename = ucmFilename + (i < 10 ? '0' + i : i) + ".jpg";
             scourgeArray.push(sfilename);
             phrArray.push(pfilename);
+            ucmArray.push(ufilename);
         }
+
+        // Initialize Page
+        var h1Element = document.createElement("h1");
+        h1Element.textContent = "Dropfleet Commander Command Cards";
+        document.body.appendChild(h1Element);
+
+        
+        const selectElement = document.createElement("select");
+        selectElement.id = "faction-select";
+        selectElement.setAttribute("onchange", "changeFaction()");
+
+        const options = ['Scourge', 'PHR', 'UCM'];
+        options.forEach(optionText => {
+            const option = document.createElement('option');
+            option.textContent = optionText;
+            selectElement.appendChild(option);
+        });
+
+        selectElement.value = selection;
+        document.body.appendChild(selectElement);
 
         // Deep copy this so we can reload clean cookies
         let cards = JSON.parse(JSON.stringify(scourgeArray));
         let selection = "Scourge";
         let hand = [];
+
+        // Create and append "Draw Card" button
+        var drawButton = document.createElement("button");
+        drawButton.textContent = "Draw Card";
+        drawButton.onclick = drawCard;
+        document.body.appendChild(drawButton);
+        
+        // Create and append "Clear Saved" button
+        var clearButton = document.createElement("button");
+        clearButton.textContent = "Clear Saved";
+        clearButton.onclick = clearSaved;
+        document.body.appendChild(clearButton);
+        
+        // Create and append <div> element for hand
+        var divElement = document.createElement("div");
+        divElement.id = "hand";
+        document.body.appendChild(divElement);
     
         // Define an array of cards
 
@@ -83,17 +124,6 @@
             displayHand()
         }
 
-        const selectElement = document.createElement("select");
-
-        const options = ['Scourge', 'PHR'];
-        options.forEach(optionText => {
-            const option = document.createElement('option');
-            option.textContent = optionText;
-            selectElement.appendChild(option);
-        });
-
-        selectElement.value = selection;
-
         function changeFaction() {
             const selectedOption = event.target.value;
             console.log('Selected option:', selectedOption);
@@ -104,6 +134,11 @@
             } else if (selectedOption == "PHR") {
                 cards = JSON.parse(JSON.stringify(phrArray));
                 selection = "PHR";
+                hand = [];
+            }
+            } else if (selectedOption == "UCM") {
+                cards = JSON.parse(JSON.stringify(phrArray));
+                selection = "UCM";
                 hand = [];
             }
             console.log(cards)
@@ -159,15 +194,5 @@
 </script>
     
 <body>
-    <h1>Card Game</h1>
-    <select id="faction-select" onchange="changeFaction()">
-         <option value="Scourge">Scourge</option>
-        <option value="PHR">PHR</option>
-    </select>
-    <button onclick="drawCard()">Draw Card</button>
-    <button onclick="clearSaved()">Clear Saved</button>
-    <div id="hand"></div>
-
-
 </body>
 </html>
