@@ -37,7 +37,8 @@
             phrArray.push(pfilename);
         }
 
-        let cards = scourgeArray;
+        // Deep copy this so we can reload clean cookies
+        let cards = JSON.parse(JSON.stringify(scourgeArray));
         let selection = "Scourge";
         let hand = [];
     
@@ -68,10 +69,10 @@
             selection = cookiesDict["selection"]
         }
         if (cookiesDict.hasOwnProperty("hand")) {
-            hand = cookiesDict["hand"]
+            hand = JSON.parse(cookiesDict["hand"])
         }
         if (cookiesDict.hasOwnProperty("deck")) {
-            cards = cookiesDict["deck"]
+            cards = JSON.parse(cookiesDict["deck"])
         }
 
         const selectElement = document.createElement("select");
@@ -89,13 +90,16 @@
             const selectedOption = event.target.value;
             console.log('Selected option:', selectedOption);
             if (selectedOption == "Scourge") {
-                cards = scourgeArray;
+                cards = JSON.parse(JSON.stringify(scourgeArray));
                 selection = "Scourge";
+                hand = [];
             } else if (selectedOption == "PHR") {
-                cards = phrArray;
+                cards = JSON.parse(JSON.stringify(phrArray));
                 selection = "PHR";
+                hand = [];
             }
             console.log(cards)
+            setCookie(selection, hand, cards);
         };
 
         // Function to draw a random card and add it to the hand
@@ -139,6 +143,10 @@
             displayHand();
             setCookie(selection, hand, cards);
         }
+
+        function clearSaved() {
+            
+        }
 </script>
     
 <body>
@@ -148,6 +156,7 @@
         <option value="PHR">PHR</option>
     </select>
     <button onclick="drawCard()">Draw Card</button>
+    <button onclick="clearSaved()">Clear Saved</button>
     <div id="hand"></div>
 
 
