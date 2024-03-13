@@ -68,15 +68,15 @@
         let loadedCookies = false;
         if (cookiesDict.hasOwnProperty("selection")) {
             selection = cookiesDict["selection"]
-            loadedCookies = True;
+            loadedCookies = true;
         }
         if (cookiesDict.hasOwnProperty("hand")) {
             hand = JSON.parse(cookiesDict["hand"])
-            loadedCookies = True;
+            loadedCookies = true;
         }
         if (cookiesDict.hasOwnProperty("deck")) {
             cards = JSON.parse(cookiesDict["deck"])
-            loadedCookies = True;
+            loadedCookies = true;
         }
 
         if (loadedCookies) {
