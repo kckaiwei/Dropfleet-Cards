@@ -42,6 +42,11 @@
             ucmArray.push(ufilename);
         }
 
+        // Deep copy this so we can reload clean cookies
+        let cards = JSON.parse(JSON.stringify(scourgeArray));
+        let selection = "Scourge";
+        let hand = [];
+
         // Initialize Page
         var h1Element = document.createElement("h1");
         h1Element.textContent = "Dropfleet Commander Command Cards";
@@ -61,11 +66,6 @@
 
         selectElement.value = selection;
         document.body.appendChild(selectElement);
-
-        // Deep copy this so we can reload clean cookies
-        let cards = JSON.parse(JSON.stringify(scourgeArray));
-        let selection = "Scourge";
-        let hand = [];
 
         // Create and append "Draw Card" button
         var drawButton = document.createElement("button");
