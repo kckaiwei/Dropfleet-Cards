@@ -65,14 +65,22 @@
             cookiesDict[key] = value;
         })
 
+        let loadedCookies = false;
         if (cookiesDict.hasOwnProperty("selection")) {
             selection = cookiesDict["selection"]
+            loadedCookies = True;
         }
         if (cookiesDict.hasOwnProperty("hand")) {
             hand = JSON.parse(cookiesDict["hand"])
+            loadedCookies = True;
         }
         if (cookiesDict.hasOwnProperty("deck")) {
             cards = JSON.parse(cookiesDict["deck"])
+            loadedCookies = True;
+        }
+
+        if (loadedCookies) {
+            displayHand()
         }
 
         const selectElement = document.createElement("select");
