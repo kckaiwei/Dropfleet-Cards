@@ -111,6 +111,7 @@
         let loadedCookies = false;
         if (cookiesDict.hasOwnProperty("selection")) {
             selection = cookiesDict["selection"]
+            selectElement.value = selection;
             loadedCookies = true;
         }
         if (cookiesDict.hasOwnProperty("hand")) {
@@ -123,6 +124,7 @@
         }
 
         if (loadedCookies) {
+            console.log(loadedCookies);
             displayHand()
         }
 
