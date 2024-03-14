@@ -89,8 +89,8 @@
 
         function setCookie(selection, hand, deck) {
             let cookie = "selection" + "=" + encodeURIComponent(selection);
-            cookie += "; deck=" + JSON.stringify(deck);
-            cookie += "; hand=" + JSON.stringify(hand);
+            cookie += "; deck=" + encodeURIComponent(JSON.stringify(deck));
+            cookie += "; hand=" + encodeURIComponent(JSON.stringify(hand));
 
             let expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate() + 30);
