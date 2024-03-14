@@ -88,17 +88,14 @@
         // Define an array of cards
 
         function setCookie(selection, hand, deck) {
-            let cookie = "selection" + "=" + encodeURIComponent(selection);
-            cookie += "; deck=" + encodeURIComponent(JSON.stringify(deck));
-            cookie += "; hand=" + encodeURIComponent(JSON.stringify(hand));
+            document.cookie = "selection" + "=" + encodeURIComponent(selection);
+            document.cookie = "deck=" + JSON.stringify(deck);
+            document.cookie = "hand=" + JSON.stringify(hand);
 
             let expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate() + 30);
-            cookie += "; expires=" + expirationDate.toUTCString();
-            console.log("saving cookie")
-            console.log(cookie)
-
-            document.cookie = cookie
+            document.cookie = "expires=" + expirationDate.toUTCString();
+            console.log(document.cookie)
         }
 
         // Read cookies
