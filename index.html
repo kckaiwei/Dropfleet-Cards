@@ -103,6 +103,7 @@
 
         // Read cookies
         let cookiesDict = {};
+        console.log(document.cookie)
         document.cookie.split(";").forEach(cookie => {
             let parts = cookie.split("=")
             let key = parts[0].trim();
