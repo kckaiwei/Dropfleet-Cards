@@ -95,6 +95,8 @@
             let expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate() + 30);
             cookie += "; expires=" + expirationDate.toUTCString();
+            console.log("saving cookie")
+            console.log("cookie")
 
             document.cookie = cookie
         }
